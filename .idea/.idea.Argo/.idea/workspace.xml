@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9bbed051-339e-473f-a82a-7e29afc10664" name="Changes" comment="Making initial testcase pass">
+    <list default="true" id="9bbed051-339e-473f-a82a-7e29afc10664" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Argo Core/Core.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Argo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Argo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Argo Tests/UnitTest1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Argo Tests/UnitTest1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Argo.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Argo.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Argo Core/Argo Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Argo Core/Argo Core.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,14 +19,11 @@
       </GitPushTagMode>
     </option>
   </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/275c91e8825d3a2b394ea2c03e30eebf62ed063dedd5d339c6ea4e6b9224053/BooleanAsserts.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Projects/Game Development/Enginge Prototypes/Argo/Argo Core/Class1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Projects/Game Development/Enginge Prototypes/Argo/Argo Core/Class1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Projects/Game Development/Enginge Prototypes/Argo/Argo Tests/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Projects/Game Development/Enginge Prototypes/Argo/Argo Tests/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Projects/Game Development/Enginge Prototypes/Argo/Argo Tests/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/Projects/Game Development/Enginge Prototypes/Argo/Argo Tests/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -39,18 +36,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "settings.editor.selected.configurable": "tasks.servers",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;RiderDotCoverFilteringPageId&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Project.Playground">
     <configuration name="Playground" type="DotNetProject" factoryName=".NET Project" temporary="true">
       <option name="EXE_PATH" value="$PROJECT_DIR$/Playground/bin/Debug/net6.0/Playground.exe" />
@@ -84,7 +81,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1661225673731</updated>
-      <workItem from="1661225678308" duration="6131000" />
+      <workItem from="1661225678308" duration="6427000" />
+      <workItem from="1661232191218" duration="314000" />
+      <workItem from="1661268333512" duration="3596000" />
     </task>
     <task id="LOCAL-00001" summary="Creating initial project structure">
       <created>1661226153004</created>
@@ -135,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661230722667</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Adjusting new class format to not need type if it is implicit">
+      <created>1661232045743</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1661232045743</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers>
       <YouTrack url="https://revelryplay.youtrack.cloud">
         <option name="defaultSearch" value="sort by: updated #Unresolved" />
@@ -156,25 +162,25 @@
       <expand>
         <path>
           <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
-          <item name="Total 0% 8/8" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Total 100% 0/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
         </path>
         <path>
           <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
-          <item name="Total 0% 8/8" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="Argo Core 0% 3/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Total 100% 0/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Argo Core 100% 0/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
         </path>
         <path>
           <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
-          <item name="Total 0% 8/8" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="Argo Core 0% 3/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="Argo_Core 0% 3/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Total 100% 0/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Argo Core 100% 0/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Argo_Core 100% 0/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
         </path>
         <path>
           <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
-          <item name="Total 0% 8/8" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="Argo Core 0% 3/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="Argo_Core 0% 3/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="Class1 0% 3/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Total 100% 0/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Argo Core 100% 0/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Argo_Core 100% 0/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Class1 100% 0/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
         </path>
       </expand>
       <select />
@@ -203,6 +209,7 @@
     <MESSAGE value="Renaming Argo to Argo Core" />
     <MESSAGE value="Adding initial Failing test" />
     <MESSAGE value="Making initial testcase pass" />
-    <option name="LAST_COMMIT_MESSAGE" value="Making initial testcase pass" />
+    <MESSAGE value="Adjusting new class format to not need type if it is implicit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adjusting new class format to not need type if it is implicit" />
   </component>
 </project>
