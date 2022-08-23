@@ -2,7 +2,7 @@
 
 public class Class1
 {
-    public bool testCase()
+    public static bool TestCase()
     {
         return true;
     }

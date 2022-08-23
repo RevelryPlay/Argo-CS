@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9bbed051-339e-473f-a82a-7e29afc10664" name="Changes" comment="Renaming Argo to Argo Core">
+    <list default="true" id="9bbed051-339e-473f-a82a-7e29afc10664" name="Changes" comment="Making initial testcase pass">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Argo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Argo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Argo Core/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Argo Core/Class1.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Argo Tests/UnitTest1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Argo Tests/UnitTest1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Argo.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Argo.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +20,12 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/275c91e8825d3a2b394ea2c03e30eebf62ed063dedd5d339c6ea4e6b9224053/BooleanAsserts.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/Projects/Game Development/Enginge Prototypes/Argo/Argo Core/Class1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/Projects/Game Development/Enginge Prototypes/Argo/Argo Core/Class1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/Projects/Game Development/Enginge Prototypes/Argo/Argo Tests/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/Projects/Game Development/Enginge Prototypes/Argo/Argo Tests/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/Projects/Game Development/Enginge Prototypes/Argo/Argo Tests/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://D:/Projects/Game Development/Enginge Prototypes/Argo/Argo Tests/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -78,7 +84,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1661225673731</updated>
-      <workItem from="1661225678308" duration="4676000" />
+      <workItem from="1661225678308" duration="6131000" />
     </task>
     <task id="LOCAL-00001" summary="Creating initial project structure">
       <created>1661226153004</created>
@@ -115,7 +121,21 @@
       <option name="project" value="LOCAL" />
       <updated>1661229995617</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Adding initial Failing test">
+      <created>1661230614059</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1661230614059</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Making initial testcase pass">
+      <created>1661230722667</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1661230722667</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers>
       <YouTrack url="https://revelryplay.youtrack.cloud">
         <option name="defaultSearch" value="sort by: updated #Unresolved" />
@@ -126,6 +146,39 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnitTestsCoverage.Settings">
+    <option name="coveragePercentColumnWidth" value="150" />
+    <option name="sortOrder" value="DESCENDING" />
+    <option name="sortedColumn" value="1" />
+    <option name="symbolColumnWidth" value="207" />
+    <coverage-tree-state>
+      <expand>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 0% 8/8" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 0% 8/8" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Argo Core 0% 3/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 0% 8/8" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Argo Core 0% 3/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Argo_Core 0% 3/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 0% 8/8" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Argo Core 0% 3/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Argo_Core 0% 3/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Class1 0% 3/3" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+      </expand>
+      <select />
+    </coverage-tree-state>
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
@@ -148,6 +201,8 @@
     <MESSAGE value="Adding initial Playground project" />
     <MESSAGE value="Adding missing .keep file" />
     <MESSAGE value="Renaming Argo to Argo Core" />
-    <option name="LAST_COMMIT_MESSAGE" value="Renaming Argo to Argo Core" />
+    <MESSAGE value="Adding initial Failing test" />
+    <MESSAGE value="Making initial testcase pass" />
+    <option name="LAST_COMMIT_MESSAGE" value="Making initial testcase pass" />
   </component>
 </project>
