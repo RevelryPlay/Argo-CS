@@ -1,4 +1,5 @@
 using Xunit;
+using Argo_Core;
 
 namespace Argo_Tests;
 

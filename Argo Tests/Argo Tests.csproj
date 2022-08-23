@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Argo\Argo.csproj" />
+      <ProjectReference Include="..\Argo Core\Argo Core.csproj" />
     </ItemGroup>
 
 </Project>
