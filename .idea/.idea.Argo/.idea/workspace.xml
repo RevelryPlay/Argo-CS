@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9bbed051-339e-473f-a82a-7e29afc10664" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Argo Core/Core.cs" afterDir="false" />
+    <list default="true" id="9bbed051-339e-473f-a82a-7e29afc10664" name="Changes" comment="Starting initial core engine structure">
+      <change afterPath="$PROJECT_DIR$/Argo Core/Shared/Content/Translations/.keep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Argo Core/Shared/Content/Translations/en-US/.keep" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Argo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Argo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Argo Core/Argo Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Argo Core/Argo Core.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +48,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected=".NET Project.Playground">
+  <component name="RunManager">
     <configuration name="Playground" type="DotNetProject" factoryName=".NET Project" temporary="true">
       <option name="EXE_PATH" value="$PROJECT_DIR$/Playground/bin/Debug/net6.0/Playground.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -83,7 +83,7 @@
       <updated>1661225673731</updated>
       <workItem from="1661225678308" duration="6427000" />
       <workItem from="1661232191218" duration="314000" />
-      <workItem from="1661268333512" duration="3596000" />
+      <workItem from="1661268333512" duration="5371000" />
     </task>
     <task id="LOCAL-00001" summary="Creating initial project structure">
       <created>1661226153004</created>
@@ -141,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661232045743</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Starting initial core engine structure">
+      <created>1661272774430</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1661272774431</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers>
       <YouTrack url="https://revelryplay.youtrack.cloud">
         <option name="defaultSearch" value="sort by: updated #Unresolved" />
@@ -210,6 +217,7 @@
     <MESSAGE value="Adding initial Failing test" />
     <MESSAGE value="Making initial testcase pass" />
     <MESSAGE value="Adjusting new class format to not need type if it is implicit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adjusting new class format to not need type if it is implicit" />
+    <MESSAGE value="Starting initial core engine structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Starting initial core engine structure" />
   </component>
 </project>
