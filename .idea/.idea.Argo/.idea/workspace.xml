@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9bbed051-339e-473f-a82a-7e29afc10664" name="Changes" comment="Adding missing .keep file">
+    <list default="true" id="9bbed051-339e-473f-a82a-7e29afc10664" name="Changes" comment="Renaming Argo to Argo Core">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Argo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Argo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Argo Core/Class1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Argo Core/Class1.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Argo Tests/UnitTest1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Argo Tests/UnitTest1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Playground/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Playground/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +45,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected=".NET Project.Playground">
     <configuration name="Playground" type="DotNetProject" factoryName=".NET Project" temporary="true">
       <option name="EXE_PATH" value="$PROJECT_DIR$/Playground/bin/Debug/net6.0/Playground.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -77,7 +78,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1661225673731</updated>
-      <workItem from="1661225678308" duration="3843000" />
+      <workItem from="1661225678308" duration="4676000" />
     </task>
     <task id="LOCAL-00001" summary="Creating initial project structure">
       <created>1661226153004</created>
@@ -107,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661229168919</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Renaming Argo to Argo Core">
+      <created>1661229995617</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1661229995617</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers>
       <YouTrack url="https://revelryplay.youtrack.cloud">
         <option name="defaultSearch" value="sort by: updated #Unresolved" />
@@ -139,6 +147,7 @@
     <MESSAGE value="Further project setup" />
     <MESSAGE value="Adding initial Playground project" />
     <MESSAGE value="Adding missing .keep file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding missing .keep file" />
+    <MESSAGE value="Renaming Argo to Argo Core" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renaming Argo to Argo Core" />
   </component>
 </project>
