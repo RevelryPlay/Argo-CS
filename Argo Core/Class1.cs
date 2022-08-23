@@ -4,6 +4,6 @@ public class Class1
 {
     public bool testCase()
     {
-        return false;
+        return true;
     }
 }
