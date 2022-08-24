@@ -7,7 +7,7 @@ on:
     branches: [ "development" ]
 
 jobs:
-  build:
+  build-dev:
 
     runs-on: ubuntu-latest
 
