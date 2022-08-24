@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Argo Base Content", "Argo B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Argo Utilities", "Argo Utilities\Argo Utilities.csproj", "{47157FB5-333D-4046-A83E-5BABF4D412A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Argo Tools", "Argo Tools\Argo Tools.csproj", "{DC748F49-7A77-4D7C-8D87-7D37C6008F80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{47157FB5-333D-4046-A83E-5BABF4D412A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47157FB5-333D-4046-A83E-5BABF4D412A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47157FB5-333D-4046-A83E-5BABF4D412A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC748F49-7A77-4D7C-8D87-7D37C6008F80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC748F49-7A77-4D7C-8D87-7D37C6008F80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC748F49-7A77-4D7C-8D87-7D37C6008F80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC748F49-7A77-4D7C-8D87-7D37C6008F80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

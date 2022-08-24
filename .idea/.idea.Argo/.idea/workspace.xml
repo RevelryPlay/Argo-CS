@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9bbed051-339e-473f-a82a-7e29afc10664" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Argo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Argo/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="9bbed051-339e-473f-a82a-7e29afc10664" name="Changes" comment="Moving base content and utilities to separate projects for simplicity" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,6 +81,7 @@
       <workItem from="1661232191218" duration="314000" />
       <workItem from="1661268333512" duration="5371000" />
       <workItem from="1661312982020" duration="1485000" />
+      <workItem from="1661354533339" duration="1121000" />
     </task>
     <task id="LOCAL-00001" summary="Creating initial project structure">
       <created>1661226153004</created>
@@ -147,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661272774431</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Moving base content and utilities to separate projects for simplicity">
+      <created>1661355742224</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1661355742224</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers>
       <YouTrack url="https://revelryplay.youtrack.cloud">
         <option name="defaultSearch" value="sort by: updated #Unresolved" />
@@ -217,6 +223,7 @@
     <MESSAGE value="Making initial testcase pass" />
     <MESSAGE value="Adjusting new class format to not need type if it is implicit" />
     <MESSAGE value="Starting initial core engine structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Starting initial core engine structure" />
+    <MESSAGE value="Moving base content and utilities to separate projects for simplicity" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moving base content and utilities to separate projects for simplicity" />
   </component>
 </project>
