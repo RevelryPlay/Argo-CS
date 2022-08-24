@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Argo Tests", "Argo Tests\Ar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground", "Playground\Playground.csproj", "{1D59E841-D5C1-4F6F-BBEB-A89FF5525086}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Argo Base Content", "Argo Base Content\Argo Base Content.csproj", "{45242425-AEDA-4DA6-9AEE-D8A4878BD59F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Argo Utilities", "Argo Utilities\Argo Utilities.csproj", "{47157FB5-333D-4046-A83E-5BABF4D412A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{1D59E841-D5C1-4F6F-BBEB-A89FF5525086}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D59E841-D5C1-4F6F-BBEB-A89FF5525086}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D59E841-D5C1-4F6F-BBEB-A89FF5525086}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45242425-AEDA-4DA6-9AEE-D8A4878BD59F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45242425-AEDA-4DA6-9AEE-D8A4878BD59F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45242425-AEDA-4DA6-9AEE-D8A4878BD59F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45242425-AEDA-4DA6-9AEE-D8A4878BD59F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47157FB5-333D-4046-A83E-5BABF4D412A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47157FB5-333D-4046-A83E-5BABF4D412A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47157FB5-333D-4046-A83E-5BABF4D412A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47157FB5-333D-4046-A83E-5BABF4D412A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
