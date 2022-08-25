@@ -9,8 +9,4 @@
         <Company>RevelryPlay</Company>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="Shared" />
-    </ItemGroup>
-
 </Project>
