@@ -1,3 +1,4 @@
+using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 
@@ -23,11 +24,11 @@ public class Core
     // Handle Preloads
     // Core Event Loop
 
-    public void Start()
+    public static void Start()
     {
         NativeWindowSettings nativeWindowSettings = new()
         {
-            Size = new(1920, 1080),
+            Size = new Vector2i(1920, 1080),
             Title = "Main Window",
             // This is needed to run on macos
             Flags = ContextFlags.ForwardCompatible

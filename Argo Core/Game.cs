@@ -1,3 +1,4 @@
+using OpenTK.Graphics.OpenGL4;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
@@ -20,5 +21,15 @@ public class Game : GameWindow
         }
 
         base.OnUpdateFrame(e);
+    }
+    
+    protected override void OnRenderFrame(FrameEventArgs e)
+    {
+        // Show that we can use OpenGL: Clear the window to cornflower blue.
+        GL.ClearColor(0.39f, 0.58f, 0.93f, 1.0f);
+        GL.Clear(ClearBufferMask.ColorBufferBit);
+
+        // Show in the window the results of the rendering calls.
+        SwapBuffers();
     }
 }
