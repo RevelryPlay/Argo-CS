@@ -25,7 +25,7 @@ public class Core
     // Handle Preloads
     // Core Event Loop
 
-    public static void Start()
+    public Core()
     {
         NativeWindowSettings nativeWindowSettings = new()
         {
