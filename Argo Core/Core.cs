@@ -1,3 +1,6 @@
+using OpenTK.Windowing.Common;
+using OpenTK.Windowing.Desktop;
+
 namespace Argo_Core;
 
 public class Core
@@ -19,4 +22,21 @@ public class Core
     // Get Registered Extensions 
     // Handle Preloads
     // Core Event Loop
+
+    public void Start()
+    {
+        NativeWindowSettings nativeWindowSettings = new()
+        {
+            Size = new(1920, 1080),
+            Title = "Main Window",
+            // This is needed to run on macos
+            Flags = ContextFlags.ForwardCompatible
+        };
+
+        // This line creates a new instance, and wraps the instance in a using statement so it's automatically disposed once we've exited the block.
+        using (Game game = new(GameWindowSettings.Default, nativeWindowSettings))
+        {
+            game.Run();
+        }
+    }
 }

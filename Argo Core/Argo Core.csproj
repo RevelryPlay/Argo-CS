@@ -12,4 +12,8 @@
       <ProjectReference Include="..\Argo Utilities\Argo Utilities.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="OpenTK" Version="4.7.4" />
+    </ItemGroup>
+
 </Project>

@@ -1,3 +1,4 @@
 ﻿using Argo_Core;
 
-Console.WriteLine("Hello, World!");
+Core core = new Core();
+core.Start();

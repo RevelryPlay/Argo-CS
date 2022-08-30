@@ -5,10 +5,4 @@ namespace Argo_Tests;
 
 public class UnitTest1
 {
-    [Fact]
-    public void Test1()
-    {
-        Class1 cls = new();
-        Assert.True(Class1.TestCase());
-    }
 }
