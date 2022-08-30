@@ -1,3 +1,4 @@
+using Argo_Core.Shared.Core.System.Graphics;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
@@ -35,9 +36,9 @@ public class Core
         };
 
         // This line creates a new instance, and wraps the instance in a using statement so it's automatically disposed once we've exited the block.
-        using (Game game = new(GameWindowSettings.Default, nativeWindowSettings))
+        using (Window window = new(GameWindowSettings.Default, nativeWindowSettings))
         {
-            game.Run();
+            window.Run();
         }
     }
 }
