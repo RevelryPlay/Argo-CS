@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Argo Core\Argo Core.csproj" />
+        <ProjectReference Include="..\Argo Core\Argo Core.csproj"/>
     </ItemGroup>
 
 </Project>

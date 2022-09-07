@@ -8,8 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Argo Base Content\Argo Base Content.csproj" />
-      <ProjectReference Include="..\Argo Core\Argo Core.csproj" />
+        <ProjectReference Include="..\Argo Base Content\Argo Base Content.csproj"/>
+        <ProjectReference Include="..\Argo Core\Argo Core.csproj"/>
     </ItemGroup>
 
 </Project>
