@@ -3,11 +3,14 @@ using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 
+using Argo_Utilities.Shared;
+using static Argo_Utilities.Shared.ColorConverter;
+
 namespace Argo_Core.Shared.Core.System.Graphics;
 
 public class Window : GameWindow
 {
-    readonly float[] _vertices =
+   readonly float[] _vertices =
     {
         -0.5f, -0.5f, 0.0f, //Bottom-left vertex
         0.5f, -0.5f, 0.0f, //Bottom-right vertex
@@ -28,10 +31,8 @@ public class Window : GameWindow
     protected override void OnLoad()
     {
         // This will be the color of the background after we clear it, in normalized colors.
-        // Normalized colors are mapped on a range of 0.0 to 1.0, with 0.0 representing black, and 1.0 representing
-        // the largest possible value for that channel.
-        // This is a deep green.
-        GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        NormalizedColor color = HexToNormalizedColor("#3c2c4a");
+        GL.ClearColor(color.Red, color.Green, color.Blue, color.Alpha);
 
         // We need to send our vertices over to the graphics card so OpenGL can use them.
         // To do this, we need to create what's called a Vertex Buffer Object (VBO).
