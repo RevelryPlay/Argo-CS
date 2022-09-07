@@ -34,6 +34,7 @@ public class Core
             Flags = ContextFlags.ForwardCompatible
         };
 
+
         // This line creates a new instance, and wraps the instance in a using statement so it's automatically disposed once we've exited the block.
         using (Window window = new(GameWindowSettings.Default, nativeWindowSettings))
         {

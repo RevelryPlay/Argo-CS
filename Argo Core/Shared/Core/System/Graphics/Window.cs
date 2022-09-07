@@ -11,15 +11,26 @@ public class Window : GameWindow
 {
     readonly float[] _vertices =
     {
-        -0.5f, -0.5f, 0.0f, //Bottom-left vertex
-        0.5f, -0.5f, 0.0f, //Bottom-right vertex
-        0.0f, 0.5f, 0.0f //Top vertex
+        0.5f,  0.5f, 0.0f, // top right
+        0.5f, -0.5f, 0.0f, // bottom right
+        -0.5f, -0.5f, 0.0f, // bottom left
+        -0.5f,  0.5f, 0.0f, // top left
+    };
+
+    // Then, we create a new array: indices.
+    // This array controls how the EBO will use those vertices to create triangles
+    readonly uint[] _indices =
+    {
+        // Note that indices start at 0!
+        0, 1, 3, // The first triangle will be the top-right half of the triangle
+        1, 2, 3  // Then the second will be the bottom-left half of the triangle
     };
 
     Shader? _shader;
+    
     int _vertexArrayObject;
-
     int _vertexBufferObject;
+    int _elementBufferObject;
 
     // A simple constructor to let us set properties like window size, title, FPS, etc. on the window.
     public Window(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
@@ -35,7 +46,6 @@ public class Window : GameWindow
 
         _vertexBufferObject = GL.GenBuffer();
         GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBufferObject);
-
         GL.BufferData(BufferTarget.ArrayBuffer, _vertices.Length * sizeof(float), _vertices, BufferUsageHint.StaticDraw);
 
         _vertexArrayObject = GL.GenVertexArray();
@@ -43,7 +53,12 @@ public class Window : GameWindow
 
         GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
         GL.EnableVertexAttribArray(0);
-
+        
+        
+        _elementBufferObject = GL.GenBuffer();
+        GL.BindBuffer(BufferTarget.ElementArrayBuffer, _elementBufferObject);
+        GL.BufferData(BufferTarget.ElementArrayBuffer, _indices.Length * sizeof(uint), _indices, BufferUsageHint.StaticDraw);
+        
         _shader = new("Shared/Core/System/Graphics/Shaders/Simple.vert", "Shared/Core/System/Graphics/Shaders/Simple.frag");
         _shader.Use();
     }
@@ -70,11 +85,10 @@ public class Window : GameWindow
         base.OnRenderFrame(e);
 
         GL.Clear(ClearBufferMask.ColorBufferBit);
-        _shader?.Use();
 
         GL.BindVertexArray(_vertexArrayObject);
-        GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
-
+        GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
+        
         SwapBuffers();
     }
 
