@@ -9,21 +9,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Update="Shared\Core\System\Graphics\Shaders\Simple.frag">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Shared\Core\System\Graphics\Shaders\Simple.vert">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <None Update="Shared\Core\System\Graphics\Shaders\*.*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Argo Utilities\Argo Utilities.csproj" />
+        <ProjectReference Include="..\Argo Utilities\Argo Utilities.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="OpenTK" Version="4.7.4" />
-        <PackageReference Include="OpenTK.Graphics" Version="4.7.4" />
+        <PackageReference Include="OpenTK" Version="4.7.4"/>
+        <PackageReference Include="OpenTK.Graphics" Version="4.7.4"/>
     </ItemGroup>
 
 </Project>
