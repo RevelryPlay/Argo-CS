@@ -1,5 +1,4 @@
 using Argo_Core.Shared.Core.System.Graphics;
-using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 
@@ -29,7 +28,7 @@ public class Core
     {
         NativeWindowSettings nativeWindowSettings = new()
         {
-            Size = new Vector2i(1920, 1080),
+            Size = new(1920, 1080),
             Title = "Main Window",
             // This is needed to run on macos
             Flags = ContextFlags.ForwardCompatible

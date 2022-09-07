@@ -55,7 +55,7 @@ public class Shader
         GL.GetProgram(Handle, GetProgramParameterName.ActiveUniforms, out var numberOfUniforms);
 
         // Next, allocate the dictionary to hold the locations.
-        _uniformLocations = new Dictionary<string, int>();
+        _uniformLocations = new();
 
         // Loop over all the uniforms,
         for (var i = 0; i < numberOfUniforms; i++)
@@ -82,7 +82,7 @@ public class Shader
         {
             // We can use `GL.GetShaderInfoLog(shader)` to get information about the error.
             var infoLog = GL.GetShaderInfoLog(shader);
-            throw new Exception($"Error occurred whilst compiling Shader({shader}).\n\n{infoLog}");
+            throw new($"Error occurred whilst compiling Shader({shader}).\n\n{infoLog}");
         }
     }
 
@@ -96,7 +96,7 @@ public class Shader
         if (code != (int)All.True)
         {
             // We can use `GL.GetProgramInfoLog(program)` to get information about the error.
-            throw new Exception($"Error occurred whilst linking Program({program})");
+            throw new($"Error occurred whilst linking Program({program})");
         }
     }
 
