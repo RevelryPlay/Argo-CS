@@ -61,6 +61,8 @@ public class Window : GameWindow
         
         _shader = new("Shared/Core/System/Graphics/Shaders/Simple.vert", "Shared/Core/System/Graphics/Shaders/Simple.frag");
         _shader.Use();
+        
+        _renderFrame();
     }
 
     protected override void OnUnload()
@@ -83,18 +85,13 @@ public class Window : GameWindow
     protected override void OnRenderFrame(FrameEventArgs e)
     {
         base.OnRenderFrame(e);
-
-        GL.Clear(ClearBufferMask.ColorBufferBit);
-
-        GL.BindVertexArray(_vertexArrayObject);
-        GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
-        
-        SwapBuffers();
     }
 
     protected override void OnResize(ResizeEventArgs e)
     {
         GL.Viewport(0, 0, Size.X, Size.Y);
+        _renderFrame();
+        
         base.OnResize(e);
     }
 
@@ -106,5 +103,15 @@ public class Window : GameWindow
         }
 
         base.OnKeyDown(e);
+    }
+
+    private void _renderFrame()
+    {
+        GL.Clear(ClearBufferMask.ColorBufferBit);
+
+        GL.BindVertexArray(_vertexArrayObject);
+        GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
+        
+        SwapBuffers();
     }
 }
