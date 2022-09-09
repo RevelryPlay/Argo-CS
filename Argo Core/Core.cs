@@ -28,7 +28,7 @@ public class Core
     {
         NativeWindowSettings nativeWindowSettings = new()
         {
-            Size = new(1920, 1080),
+            Size = new(1200, 1080),
             Title = "Main Window",
             // This is needed to run on macos
             Flags = ContextFlags.ForwardCompatible

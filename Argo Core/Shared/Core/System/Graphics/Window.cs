@@ -1,8 +1,11 @@
-using Argo_Utilities.Shared;
+using System.Diagnostics;
+
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
+
+using Argo_Utilities.Shared;
 using static Argo_Utilities.Shared.ColorConverter;
 
 namespace Argo_Core.Shared.Core.System.Graphics;
@@ -11,27 +14,17 @@ public class Window : GameWindow
 {
     readonly float[] _vertices =
     {
-        0.5f,  0.5f, 0.0f, // top right
-        0.5f, -0.5f, 0.0f, // bottom right
-        -0.5f, -0.5f, 0.0f, // bottom left
-        -0.5f,  0.5f, 0.0f, // top left
-    };
-
-    // Then, we create a new array: indices.
-    // This array controls how the EBO will use those vertices to create triangles
-    readonly uint[] _indices =
-    {
-        // Note that indices start at 0!
-        0, 1, 3, // The first triangle will be the top-right half of the triangle
-        1, 2, 3  // Then the second will be the bottom-left half of the triangle
+        // positions        // colors
+        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
+        -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
+        0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top 
     };
 
     Shader? _shader;
     
     int _vertexArrayObject;
     int _vertexBufferObject;
-    int _elementBufferObject;
-
+    
     // A simple constructor to let us set properties like window size, title, FPS, etc. on the window.
     public Window(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
         : base(gameWindowSettings, nativeWindowSettings)
@@ -41,7 +34,7 @@ public class Window : GameWindow
     protected override void OnLoad()
     {
         // This will be the color of the background after we clear it, in normalized colors.
-        NormalizedColor color = HexToNormalizedColor("#3c2c4a");
+        NormalizedColor color = HexToNormalizedColor("#141f1e"); 
         GL.ClearColor(color.Red, color.Green, color.Blue, color.Alpha);
 
         _vertexBufferObject = GL.GenBuffer();
@@ -51,17 +44,18 @@ public class Window : GameWindow
         _vertexArrayObject = GL.GenVertexArray();
         GL.BindVertexArray(_vertexArrayObject);
 
-        GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
+        GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 0);
         GL.EnableVertexAttribArray(0);
         
+        GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 3 * sizeof(float));
+        GL.EnableVertexAttribArray(1);
         
-        _elementBufferObject = GL.GenBuffer();
-        GL.BindBuffer(BufferTarget.ElementArrayBuffer, _elementBufferObject);
-        GL.BufferData(BufferTarget.ElementArrayBuffer, _indices.Length * sizeof(uint), _indices, BufferUsageHint.StaticDraw);
+        GL.GetInteger(GetPName.MaxVertexAttribs, out int maxAttributeCount);
+        Debug.WriteLine($"Maximum number of vertex attributes supported: {maxAttributeCount}");
         
         _shader = new("Shared/Core/System/Graphics/Shaders/Simple.vert", "Shared/Core/System/Graphics/Shaders/Simple.frag");
         _shader.Use();
-        
+
         _renderFrame();
     }
 
@@ -108,9 +102,9 @@ public class Window : GameWindow
     private void _renderFrame()
     {
         GL.Clear(ClearBufferMask.ColorBufferBit);
-
+        
         GL.BindVertexArray(_vertexArrayObject);
-        GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
+        GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
         
         SwapBuffers();
     }
