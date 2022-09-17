@@ -8,22 +8,21 @@ on:
 
 jobs:
   build-main:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup .NET
+    - name: Setup .NET Main
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
-    - name: Restore dependencies
+    - name: Restore Dependencies Main
       run: dotnet restore
-    - name: Build
+    - name: Build Main
       run: dotnet build --no-restore
-    - name: Test
+    - name: Test Main
       run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
-    - name: Test Report
+    - name: Test Report Main
       uses: dorny/test-reporter@v1.5.0
       if: success() || failure()    # run this step even if previous step failed
       with:
