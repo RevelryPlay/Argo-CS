@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace Argo_Utilities.Shared;
+namespace Argo_Utilities.Shared.Graphics;
 
 public struct ColorConverter
 {

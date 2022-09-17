@@ -5,8 +5,7 @@ using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 
-using Argo_Utilities.Shared;
-using static Argo_Utilities.Shared.ColorConverter;
+using Argo_Utilities.Shared.Graphics;
 
 namespace Argo_Core.Shared.Core.System.Graphics;
 
@@ -34,7 +33,7 @@ public class Window : GameWindow
     protected override void OnLoad()
     {
         // This will be the color of the background after we clear it, in normalized colors.
-        NormalizedColor color = HexToNormalizedColor("#141f1e"); 
+        NormalizedColor color = ColorConverter.HexToNormalizedColor("#141f1e"); 
         GL.ClearColor(color.Red, color.Green, color.Blue, color.Alpha);
 
         _vertexBufferObject = GL.GenBuffer();

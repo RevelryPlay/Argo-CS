@@ -1,5 +1,6 @@
 using System;
 using Argo_Utilities.Shared;
+using Argo_Utilities.Shared.Graphics;
 using Xunit;
 
 namespace Argo_Tests.Utilities.Shared;
