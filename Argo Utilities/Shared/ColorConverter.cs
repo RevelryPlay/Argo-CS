@@ -9,7 +9,7 @@ public struct ColorConverter
     /// <summary>
     ///     Convert a color from a hex value to something that can be used with OpenGL
     /// </summary>
-    /// <param name="hex">String of the hex value as either `AARRGGBB` `RRGGBB` or `RGB`</param>
+    /// <param name="hex">String of the hex value as either `AARRGGBB`, `RRGGBB`, `RGB`, or `name`</param>
     public static NormalizedColor HexToNormalizedColor(string hex)
     {
         Color color = ColorTranslator.FromHtml(hex);
