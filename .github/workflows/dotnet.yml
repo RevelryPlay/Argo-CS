@@ -24,19 +24,12 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build --no-restore
-      - name: Archive Debug Artifacts
+      - name: Archive Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: Debug
+          name: Bin
           path: |
-            bin/Debug/net6.0/**
-          retention-days: 30
-      - name: Archive Release Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: Release
-          path: |
-            bin/Release/net6.0/**
+            bin/**
           retention-days: 30
       - name: Run Tests
         run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
