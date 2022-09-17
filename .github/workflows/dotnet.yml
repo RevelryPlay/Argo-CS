@@ -29,7 +29,7 @@ jobs:
         with:
           name: API Debug
           path: |
-            Argo Api/bin/Debug/**
+            Argo API/bin/Debug/**
           retention-days: 30
       - name: Archive Base Content Artifacts
         uses: actions/upload-artifact@v3
