@@ -29,49 +29,49 @@ jobs:
         with:
           name: API Debug
           path: |
-            Argo Api\bin\Debug\**
+            Argo Api/bin/Debug/**
           retention-days: 30
       - name: Archive Base Content Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Base Content Debug
           path: |
-            Argo Base Content\bin\Debug\**
+           Argo Base Content/bin/Debug/**
           retention-days: 30
       - name: Archive Core Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Core Debug
           path: |
-            Argo Core\bin\Debug\**
+            Argo Core/bin/Debug/**
           retention-days: 30
       - name: Archive Editor Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Editor Debug
           path: |
-            Argo Editor\bin\Debug\**
+            Argo Editor/bin/Debug/**
           retention-days: 30
       - name: Archive Tools Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Tools Debug
           path: |
-            Argo Tools\bin\Debug\**
+            Argo Tools/bin/Debug/**
           retention-days: 30
       - name: Archive Utilities Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Utilities Debug
           path: |
-            Argo Utilities\bin\Debug\**
+            Argo Utilities/bin/Debug/**
           retention-days: 30
       - name: Archive Playground Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Playground Debug
           path: |
-            Playground\bin\Debug\**
+            Playground/bin/Debug/**
           retention-days: 30
       - name: Run Tests
         run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
