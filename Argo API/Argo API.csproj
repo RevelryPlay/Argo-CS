@@ -2,12 +2,14 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <RootNamespace>Argo_Utilities</RootNamespace>
+        <RootNamespace>Argo_API</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Authors>RevelryPlay</Authors>
-        <Company>RevelryPlay</Company>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Argo Core\Argo Core.csproj" />
+    </ItemGroup>
 
 </Project>

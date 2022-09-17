@@ -1,13 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <OutputType>Exe</OutputType>
         <TargetFramework>net6.0</TargetFramework>
-        <RootNamespace>Argo_Utilities</RootNamespace>
+        <RootNamespace>Argo_Editor</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Authors>RevelryPlay</Authors>
-        <Company>RevelryPlay</Company>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Argo API\Argo API.csproj" />
+      <ProjectReference Include="..\Argo Tools\Argo Tools.csproj" />
+    </ItemGroup>
 
 </Project>
