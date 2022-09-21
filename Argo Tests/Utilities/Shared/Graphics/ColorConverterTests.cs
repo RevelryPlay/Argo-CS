@@ -11,7 +11,7 @@ public class ColorConverterTests
     {
         // RRGGBB
         NormalizedColor color = ColorConverter.HexToNormalizedColor("#ff0000");
-        Assert.Equal(1.0f, color.Red);
+        Assert.Equal(0.0f, color.Red);
         Assert.Equal(0.0f, color.Green);
         Assert.Equal(0.0f, color.Blue);
         Assert.Equal(1.0f, color.Alpha);
