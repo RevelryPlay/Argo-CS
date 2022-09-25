@@ -35,6 +35,9 @@ public class Window : GameWindow
     int _vertexArrayObject;
     int _vertexBufferObject;
 
+    Matrix4 _previousProjection;
+    Matrix4 _previousView;
+    
     // A simple constructor to let us set properties like window size, title, FPS, etc. on the window.
     public Window(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
         : base(gameWindowSettings, nativeWindowSettings)
@@ -134,7 +137,6 @@ public class Window : GameWindow
         }
 
         const float cameraSpeed = 1.5f;
-        const float sensitivity = 0.2f;
 
         if (_camera == null)
             return;
@@ -180,7 +182,14 @@ public class Window : GameWindow
     {
         if (_shader == null || _camera == null)
             return;
+
+        if (_previousProjection == _camera.GetProjectionMatrix()
+            && _previousView == _camera.GetViewMatrix())
+            return;
         
+        _previousProjection = _camera.GetProjectionMatrix();
+        _previousView = _camera.GetViewMatrix();
+            
         GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
         GL.BindVertexArray(_vertexArrayObject);
