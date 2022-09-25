@@ -1,5 +1,6 @@
 using Argo_Utilities.Shared.Graphics;
 using OpenTK.Graphics.OpenGL4;
+using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
@@ -11,7 +12,8 @@ public class Window : GameWindow
 
     readonly uint[] _indices =
     {
-        0, 1, 3, 1, 2, 3
+        0, 1, 3, 
+        1, 2, 3
     };
     readonly float[] _vertices =
     {
@@ -70,6 +72,8 @@ public class Window : GameWindow
 
         _texture = Texture.LoadFromFile("Shared/Textures/container.png");
         _texture.Use(TextureUnit.Texture0);
+        
+        _shader?.SetInt("texture0", 0);
 
         _renderFrame();
     }
@@ -120,8 +124,16 @@ public class Window : GameWindow
         GL.Clear(ClearBufferMask.ColorBufferBit);
 
         GL.BindVertexArray(_vertexArrayObject);
+        
+        Matrix4 transform = Matrix4.Identity;
+        transform = transform * Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(20f));
+        transform = transform * Matrix4.CreateScale(1.1f);
+        transform = transform * Matrix4.CreateTranslation(0.1f, 0.1f, 0.0f);
+        
         _texture?.Use(TextureUnit.Texture0);
         _shader?.Use();
+        
+        _shader?.SetMatrix4("transform", transform);
 
         GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
 
