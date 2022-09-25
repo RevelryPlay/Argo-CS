@@ -12,10 +12,10 @@ public class Shader
     public Shader(string vertPath, string fragPath)
     {
         // Load vertex shader and compile
-        var shaderSource = File.ReadAllText(vertPath);
+        string shaderSource = File.ReadAllText(vertPath);
 
         // GL.CreateShader will create an empty shader (obviously). The ShaderType enum denotes which type of shader will be created.
-        var vertexShader = GL.CreateShader(ShaderType.VertexShader);
+        int vertexShader = GL.CreateShader(ShaderType.VertexShader);
 
         // Now, bind the GLSL source code
         GL.ShaderSource(vertexShader, shaderSource);
@@ -25,7 +25,7 @@ public class Shader
 
         // We do the same for the fragment shader.
         shaderSource = File.ReadAllText(fragPath);
-        var fragmentShader = GL.CreateShader(ShaderType.FragmentShader);
+        int fragmentShader = GL.CreateShader(ShaderType.FragmentShader);
         GL.ShaderSource(fragmentShader, shaderSource);
         CompileShader(fragmentShader);
 
@@ -52,19 +52,19 @@ public class Shader
         // later.
 
         // First, we have to get the number of active uniforms in the shader.
-        GL.GetProgram(Handle, GetProgramParameterName.ActiveUniforms, out var numberOfUniforms);
+        GL.GetProgram(Handle, GetProgramParameterName.ActiveUniforms, out int numberOfUniforms);
 
         // Next, allocate the dictionary to hold the locations.
         _uniformLocations = new();
 
         // Loop over all the uniforms,
-        for (var i = 0; i < numberOfUniforms; i++)
+        for (int i = 0; i < numberOfUniforms; i++)
         {
             // get the name of this uniform,
-            var key = GL.GetActiveUniform(Handle, i, out _, out _);
+            string? key = GL.GetActiveUniform(Handle, i, out _, out _);
 
             // get the location,
-            var location = GL.GetUniformLocation(Handle, key);
+            int location = GL.GetUniformLocation(Handle, key);
 
             // and then add it to the dictionary.
             _uniformLocations.Add(key, location);
@@ -77,13 +77,14 @@ public class Shader
         GL.CompileShader(shader);
 
         // Check for compilation errors
-        GL.GetShader(shader, ShaderParameter.CompileStatus, out var code);
-        if (code != (int)All.True)
-        {
-            // We can use `GL.GetShaderInfoLog(shader)` to get information about the error.
-            var infoLog = GL.GetShaderInfoLog(shader);
-            throw new($"Error occurred whilst compiling Shader({shader}).\n\n{infoLog}");
-        }
+        GL.GetShader(shader, ShaderParameter.CompileStatus, out int code);
+        
+        if (code == (int)All.True)
+            return;
+        
+        // We can use `GL.GetShaderInfoLog(shader)` to get information about the error.
+        string? infoLog = GL.GetShaderInfoLog(shader);
+        throw new($"Error occurred whilst compiling Shader({shader}).\n\n{infoLog}");
     }
 
     static void LinkProgram(int program)
@@ -92,7 +93,7 @@ public class Shader
         GL.LinkProgram(program);
 
         // Check for linking errors
-        GL.GetProgram(program, GetProgramParameterName.LinkStatus, out var code);
+        GL.GetProgram(program, GetProgramParameterName.LinkStatus, out int code);
         if (code != (int)All.True)
         {
             // We can use `GL.GetProgramInfoLog(program)` to get information about the error.

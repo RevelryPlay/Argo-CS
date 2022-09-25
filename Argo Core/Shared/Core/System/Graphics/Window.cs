@@ -1,29 +1,34 @@
-using System.Diagnostics;
-
+using Argo_Utilities.Shared.Graphics;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 
-using Argo_Utilities.Shared.Graphics;
-
 namespace Argo_Core.Shared.Core.System.Graphics;
 
 public class Window : GameWindow
 {
+
+    readonly uint[] _indices =
+    {
+        0, 1, 3, 1, 2, 3
+    };
     readonly float[] _vertices =
     {
-        // positions        // colors
-        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
-        -0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,   // bottom left
-        0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top 
+        // Position       Texture coordinates
+        0.5f, 0.5f, 0.0f, 1.0f, 1.0f, // top right
+        0.5f, -0.5f, 0.0f, 1.0f, 0.0f, // bottom right
+        -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, // bottom left
+        -0.5f, 0.5f, 0.0f, 0.0f, 1.0f // top left
     };
 
-    Shader? _shader;
-    
+    int _elementBufferObject;
     int _vertexArrayObject;
     int _vertexBufferObject;
     
+    Shader? _shader;
+    Texture? _texture;
+
     // A simple constructor to let us set properties like window size, title, FPS, etc. on the window.
     public Window(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
         : base(gameWindowSettings, nativeWindowSettings)
@@ -32,8 +37,10 @@ public class Window : GameWindow
 
     protected override void OnLoad()
     {
+        base.OnLoad();
+        
         // This will be the color of the background after we clear it, in normalized colors.
-        NormalizedColor color = ColorConverter.HexToNormalizedColor("#141f1e"); 
+        NormalizedColor color = ColorConverter.HexToNormalizedColor("#141f1e");
         GL.ClearColor(color.Red, color.Green, color.Blue, color.Alpha);
 
         _vertexBufferObject = GL.GenBuffer();
@@ -42,18 +49,27 @@ public class Window : GameWindow
 
         _vertexArrayObject = GL.GenVertexArray();
         GL.BindVertexArray(_vertexArrayObject);
-
-        GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 0);
-        GL.EnableVertexAttribArray(0);
         
-        GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 3 * sizeof(float));
-        GL.EnableVertexAttribArray(1);
-        
-        GL.GetInteger(GetPName.MaxVertexAttribs, out int maxAttributeCount);
-        Debug.WriteLine($"Maximum number of vertex attributes supported: {maxAttributeCount}");
+        _elementBufferObject = GL.GenBuffer();
+        GL.BindBuffer(BufferTarget.ElementArrayBuffer, _elementBufferObject);
+        GL.BufferData(BufferTarget.ElementArrayBuffer, _indices.Length * sizeof(uint), _indices, BufferUsageHint.StaticDraw);
         
         _shader = new("Shared/Core/System/Graphics/Shaders/Simple.vert", "Shared/Core/System/Graphics/Shaders/Simple.frag");
         _shader.Use();
+
+        if (_shader != null)
+        {
+            int vertexLocation = _shader.GetAttribLocation("aPosition");
+            GL.EnableVertexAttribArray(vertexLocation);
+            GL.VertexAttribPointer(vertexLocation, 3, VertexAttribPointerType.Float, false, 5 * sizeof(float), 0);
+            
+            int texCoordLocation = _shader.GetAttribLocation("aTexCoord");
+            GL.EnableVertexAttribArray(texCoordLocation);
+            GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 5 * sizeof(float), 3 * sizeof(float));
+        }
+
+        _texture = Texture.LoadFromFile("Shared/Textures/container.png");
+        _texture.Use(TextureUnit.Texture0);
 
         _renderFrame();
     }
@@ -68,6 +84,7 @@ public class Window : GameWindow
         // Delete all the resources.
         GL.DeleteBuffer(_vertexBufferObject);
         GL.DeleteVertexArray(_vertexArrayObject);
+        GL.DeleteBuffer(_elementBufferObject);
 
         if (_shader != null)
             GL.DeleteProgram(_shader.Handle);
@@ -84,7 +101,7 @@ public class Window : GameWindow
     {
         GL.Viewport(0, 0, Size.X, Size.Y);
         _renderFrame();
-        
+
         base.OnResize(e);
     }
 
@@ -98,13 +115,16 @@ public class Window : GameWindow
         base.OnKeyDown(e);
     }
 
-    private void _renderFrame()
+    void _renderFrame()
     {
         GL.Clear(ClearBufferMask.ColorBufferBit);
-        
+
         GL.BindVertexArray(_vertexArrayObject);
-        GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
-        
+        _texture?.Use(TextureUnit.Texture0);
+        _shader?.Use();
+
+        GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
+
         SwapBuffers();
     }
 }
