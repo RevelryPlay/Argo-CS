@@ -12,10 +12,10 @@ public class Window : GameWindow
 
     readonly uint[] _indices =
     {
-        0, 1, 3, 
+        0, 1, 3,
         1, 2, 3
     };
-    
+
     readonly float[] _vertices =
     {
         // Position       Texture coordinates
@@ -25,15 +25,20 @@ public class Window : GameWindow
         -0.5f, 0.5f, 0.0f, 0.0f, 1.0f // top left
     };
 
+    Camera? _camera;
+
     int _elementBufferObject;
-    int _vertexArrayObject;
-    int _vertexBufferObject;
+
+    bool _firstMoved;
+
+    Vector2 _lastPos;
 
     Shader? _shader;
     Texture? _texture;
-    
-    Matrix4 _view;
-    Matrix4 _projection;
+
+    double _time;
+    int _vertexArrayObject;
+    int _vertexBufferObject;
 
     // A simple constructor to let us set properties like window size, title, FPS, etc. on the window.
     public Window(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
@@ -44,9 +49,9 @@ public class Window : GameWindow
     protected override void OnLoad()
     {
         base.OnLoad();
-        
+
         GL.Enable(EnableCap.DepthTest);
-        
+
         // This will be the color of the background after we clear it, in normalized colors.
         NormalizedColor color = ColorConverter.HexToNormalizedColor("#141f1e");
         GL.ClearColor(color.Red, color.Green, color.Blue, color.Alpha);
@@ -57,11 +62,11 @@ public class Window : GameWindow
 
         _vertexArrayObject = GL.GenVertexArray();
         GL.BindVertexArray(_vertexArrayObject);
-        
+
         _elementBufferObject = GL.GenBuffer();
         GL.BindBuffer(BufferTarget.ElementArrayBuffer, _elementBufferObject);
         GL.BufferData(BufferTarget.ElementArrayBuffer, _indices.Length * sizeof(uint), _indices, BufferUsageHint.StaticDraw);
-        
+
         _shader = new("Shared/Core/System/Graphics/Shaders/Simple.vert", "Shared/Core/System/Graphics/Shaders/Simple.frag");
         _shader.Use();
 
@@ -70,7 +75,7 @@ public class Window : GameWindow
             int vertexLocation = _shader.GetAttribLocation("aPosition");
             GL.EnableVertexAttribArray(vertexLocation);
             GL.VertexAttribPointer(vertexLocation, 3, VertexAttribPointerType.Float, false, 5 * sizeof(float), 0);
-            
+
             int texCoordLocation = _shader.GetAttribLocation("aTexCoord");
             GL.EnableVertexAttribArray(texCoordLocation);
             GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 5 * sizeof(float), 3 * sizeof(float));
@@ -78,11 +83,11 @@ public class Window : GameWindow
 
         _texture = Texture.LoadFromFile("Shared/Textures/container.png");
         _texture.Use(TextureUnit.Texture0);
-        
+
         _shader?.SetInt("texture0", 0);
-        
-        _view = Matrix4.CreateTranslation(0.0f, 0.0f, -3.0f);
-        _projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(45f), Size.X / (float) Size.Y, 0.1f, 100.0f);
+
+        _camera = new(Vector3.UnitZ * 3, Size.X / (float)Size.Y);
+        CursorState = CursorState.Grabbed;
 
         _renderFrame();
     }
@@ -108,6 +113,9 @@ public class Window : GameWindow
     protected override void OnRenderFrame(FrameEventArgs e)
     {
         base.OnRenderFrame(e);
+
+        _time += 4.0 * e.Time;
+        _renderFrame();
     }
 
     protected override void OnResize(ResizeEventArgs e)
@@ -118,30 +126,99 @@ public class Window : GameWindow
         base.OnResize(e);
     }
 
-    protected override void OnKeyDown(KeyboardKeyEventArgs e)
+    protected override void OnUpdateFrame(FrameEventArgs args)
     {
+        base.OnUpdateFrame(args);
+
+        if (!IsFocused) // Check to see if the window is focused
+        {
+            return;
+        }
+
         if (KeyboardState.IsKeyDown(Keys.Escape))
         {
             Close();
         }
 
-        base.OnKeyDown(e);
+        const float cameraSpeed = 1.5f;
+        const float sensitivity = 0.2f;
+
+        if (_camera == null)
+            return;
+        
+        if (KeyboardState.IsKeyDown(Keys.W))
+        {
+            _camera.Position += _camera.Front * cameraSpeed * (float)args.Time; // Forward
+        }
+
+        if (KeyboardState.IsKeyDown(Keys.S))
+        {
+            _camera.Position -= _camera.Front * cameraSpeed * (float)args.Time; // Backwards
+        }
+        if (KeyboardState.IsKeyDown(Keys.A))
+        {
+            _camera.Position -= _camera.Right * cameraSpeed * (float)args.Time; // Left
+        }
+        if (KeyboardState.IsKeyDown(Keys.D))
+        {
+            _camera.Position += _camera.Right * cameraSpeed * (float)args.Time; // Right
+        }
+        if (KeyboardState.IsKeyDown(Keys.Space))
+        {
+            _camera.Position += _camera.Up * cameraSpeed * (float)args.Time; // Up
+        }
+        if (KeyboardState.IsKeyDown(Keys.LeftShift))
+        {
+            _camera.Position -= _camera.Up * cameraSpeed * (float)args.Time; // Down
+        }
+
+        // Get the mouse state
+
+        if (_firstMoved) // This bool variable is initially set to true.
+        {
+            _lastPos = new(MouseState.X, MouseState.Y);
+            _firstMoved = false;
+        }
+        else
+        {
+            // Calculate the offset of the mouse position
+            float deltaX = MouseState.X - _lastPos.X;
+            float deltaY = MouseState.Y - _lastPos.Y;
+            _lastPos = new(MouseState.X, MouseState.Y);
+
+            // Apply the camera pitch and yaw (we clamp the pitch in the camera class)
+            _camera.Yaw += deltaX * sensitivity;
+            _camera.Pitch -= deltaY * sensitivity; // Reversed since y-coordinates range from bottom to top
+        }
+    }
+
+    protected override void OnMouseWheel(MouseWheelEventArgs e)
+    {
+        base.OnMouseWheel(e);
+
+        if (_camera == null)
+            return;
+        
+        _camera.Fov -= e.OffsetY;
     }
 
     void _renderFrame()
     {
+        if (_shader == null || _camera == null)
+            return;
+        
         GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
         GL.BindVertexArray(_vertexArrayObject);
-        
-        Matrix4 model = Matrix4.Identity;
-        
+
         _texture?.Use(TextureUnit.Texture0);
         _shader?.Use();
-        
+
+        Matrix4 model = Matrix4.Identity;
+
         _shader?.SetMatrix4("model", model);
-        _shader?.SetMatrix4("view", _view);
-        _shader?.SetMatrix4("projection", _projection);
+        _shader?.SetMatrix4("view", _camera.GetViewMatrix());
+        _shader?.SetMatrix4("projection", _camera.GetProjectionMatrix());
 
         GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
 

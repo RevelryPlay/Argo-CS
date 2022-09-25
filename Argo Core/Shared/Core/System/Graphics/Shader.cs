@@ -78,10 +78,10 @@ public class Shader
 
         // Check for compilation errors
         GL.GetShader(shader, ShaderParameter.CompileStatus, out int code);
-        
+
         if (code == (int)All.True)
             return;
-        
+
         // We can use `GL.GetShaderInfoLog(shader)` to get information about the error.
         string? infoLog = GL.GetShaderInfoLog(shader);
         throw new($"Error occurred whilst compiling Shader({shader}).\n\n{infoLog}");
