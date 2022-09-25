@@ -15,21 +15,62 @@ public class Window : GameWindow
         0, 1, 3, 
         1, 2, 3
     };
-    readonly float[] _vertices =
-    {
-        // Position       Texture coordinates
-        0.5f, 0.5f, 0.0f, 1.0f, 1.0f, // top right
-        0.5f, -0.5f, 0.0f, 1.0f, 0.0f, // bottom right
-        -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, // bottom left
-        -0.5f, 0.5f, 0.0f, 0.0f, 1.0f // top left
+    
+    float[] _vertices = {
+        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+        0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+        0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+        0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+        0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+        0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+        0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+        0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+        0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+        0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+        0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+        0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+        0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+        0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
     };
 
     int _elementBufferObject;
     int _vertexArrayObject;
     int _vertexBufferObject;
     
+    double _time;
+    
     Shader? _shader;
     Texture? _texture;
+    
+    Matrix4 _view;
+    Matrix4 _projection;
 
     // A simple constructor to let us set properties like window size, title, FPS, etc. on the window.
     public Window(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
@@ -40,6 +81,8 @@ public class Window : GameWindow
     protected override void OnLoad()
     {
         base.OnLoad();
+        
+        GL.Enable(EnableCap.DepthTest);
         
         // This will be the color of the background after we clear it, in normalized colors.
         NormalizedColor color = ColorConverter.HexToNormalizedColor("#141f1e");
@@ -74,6 +117,9 @@ public class Window : GameWindow
         _texture.Use(TextureUnit.Texture0);
         
         _shader?.SetInt("texture0", 0);
+        
+        _view = Matrix4.CreateTranslation(0.0f, 0.0f, -3.0f);
+        _projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(45f), Size.X / (float) Size.Y, 0.1f, 100.0f);
 
         _renderFrame();
     }
@@ -99,6 +145,9 @@ public class Window : GameWindow
     protected override void OnRenderFrame(FrameEventArgs e)
     {
         base.OnRenderFrame(e);
+        
+        _time += 4.0 * e.Time;
+        _renderFrame();
     }
 
     protected override void OnResize(ResizeEventArgs e)
@@ -121,21 +170,21 @@ public class Window : GameWindow
 
     void _renderFrame()
     {
-        GL.Clear(ClearBufferMask.ColorBufferBit);
+        GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
         GL.BindVertexArray(_vertexArrayObject);
         
-        Matrix4 transform = Matrix4.Identity;
-        transform = transform * Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(20f));
-        transform = transform * Matrix4.CreateScale(1.1f);
-        transform = transform * Matrix4.CreateTranslation(0.1f, 0.1f, 0.0f);
+        Matrix4 model = Matrix4.Identity * Matrix4.CreateRotationX((float)MathHelper.DegreesToRadians(_time));
+        model = model * Matrix4.CreateRotationY((float)MathHelper.DegreesToRadians(_time));
         
         _texture?.Use(TextureUnit.Texture0);
         _shader?.Use();
         
-        _shader?.SetMatrix4("transform", transform);
+        _shader?.SetMatrix4("model", model);
+        _shader?.SetMatrix4("view", _view);
+        _shader?.SetMatrix4("projection", _projection);
 
-        GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
+        GL.DrawArrays(PrimitiveType.Triangles, 0, 36);
 
         SwapBuffers();
     }
