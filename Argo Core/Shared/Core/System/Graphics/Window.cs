@@ -29,14 +29,9 @@ public class Window : GameWindow
 
     int _elementBufferObject;
 
-    bool _firstMoved;
-
-    Vector2 _lastPos;
-
     Shader? _shader;
     Texture? _texture;
 
-    double _time;
     int _vertexArrayObject;
     int _vertexBufferObject;
 
@@ -113,8 +108,6 @@ public class Window : GameWindow
     protected override void OnRenderFrame(FrameEventArgs e)
     {
         base.OnRenderFrame(e);
-
-        _time += 4.0 * e.Time;
         _renderFrame();
     }
 
@@ -171,25 +164,6 @@ public class Window : GameWindow
         {
             _camera.Position -= _camera.Up * cameraSpeed * (float)args.Time; // Down
         }
-
-        // Get the mouse state
-
-        if (_firstMoved) // This bool variable is initially set to true.
-        {
-            _lastPos = new(MouseState.X, MouseState.Y);
-            _firstMoved = false;
-        }
-        else
-        {
-            // Calculate the offset of the mouse position
-            float deltaX = MouseState.X - _lastPos.X;
-            float deltaY = MouseState.Y - _lastPos.Y;
-            _lastPos = new(MouseState.X, MouseState.Y);
-
-            // Apply the camera pitch and yaw (we clamp the pitch in the camera class)
-            _camera.Yaw += deltaX * sensitivity;
-            _camera.Pitch -= deltaY * sensitivity; // Reversed since y-coordinates range from bottom to top
-        }
     }
 
     protected override void OnMouseWheel(MouseWheelEventArgs e)
@@ -210,9 +184,6 @@ public class Window : GameWindow
         GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
         GL.BindVertexArray(_vertexArrayObject);
-
-        _texture?.Use(TextureUnit.Texture0);
-        _shader?.Use();
 
         Matrix4 model = Matrix4.Identity;
 
