@@ -26,6 +26,8 @@ public class Core
 
     public Core()
     {
+        #region Setup Window
+
         NativeWindowSettings nativeWindowSettings = new()
         {
             Size = new(1200, 1080),
@@ -40,5 +42,7 @@ public class Core
         {
             window.Run();
         }
+
+        #endregion
     }
 }

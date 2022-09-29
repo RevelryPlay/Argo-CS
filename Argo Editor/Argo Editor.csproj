@@ -6,12 +6,10 @@
         <RootNamespace>Argo_Editor</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Argo API\Argo API.csproj"/>
-        <ProjectReference Include="..\Argo Tools\Argo Tools.csproj"/>
+      <ProjectReference Include="..\Argo Tools\Argo Tools.csproj" />
     </ItemGroup>
 
 </Project>

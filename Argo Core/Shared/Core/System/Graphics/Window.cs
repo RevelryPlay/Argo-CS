@@ -1,14 +1,17 @@
-using Argo_Utilities.Shared.Graphics;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 
+using Argo_Utilities.Shared.Graphics;
+
 namespace Argo_Core.Shared.Core.System.Graphics;
 
 public class Window : GameWindow
 {
+
+    #region Properties
 
     readonly uint[] _indices =
     {
@@ -37,8 +40,9 @@ public class Window : GameWindow
 
     Matrix4 _previousProjection;
     Matrix4 _previousView;
+
+    #endregion
     
-    // A simple constructor to let us set properties like window size, title, FPS, etc. on the window.
     public Window(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
         : base(gameWindowSettings, nativeWindowSettings)
     {
@@ -50,10 +54,16 @@ public class Window : GameWindow
 
         GL.Enable(EnableCap.DepthTest);
 
+        #region Clear the Window
+
         // This will be the color of the background after we clear it, in normalized colors.
         NormalizedColor color = ColorConverter.HexToNormalizedColor("#141f1e");
         GL.ClearColor(color.Red, color.Green, color.Blue, color.Alpha);
 
+        #endregion
+        
+        #region Build Vertex Buffers
+        
         _vertexBufferObject = GL.GenBuffer();
         GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBufferObject);
         GL.BufferData(BufferTarget.ArrayBuffer, _vertices.Length * sizeof(float), _vertices, BufferUsageHint.StaticDraw);
@@ -64,7 +74,18 @@ public class Window : GameWindow
         _elementBufferObject = GL.GenBuffer();
         GL.BindBuffer(BufferTarget.ElementArrayBuffer, _elementBufferObject);
         GL.BufferData(BufferTarget.ElementArrayBuffer, _indices.Length * sizeof(uint), _indices, BufferUsageHint.StaticDraw);
+        
+        #endregion
 
+        #region Load Textures
+
+        _texture = Texture.LoadFromFile("Shared/Textures/container.png");
+        _texture.Use(TextureUnit.Texture0);
+
+        #endregion
+        
+        #region Shader Setup
+        
         _shader = new("Shared/Core/System/Graphics/Shaders/Simple.vert", "Shared/Core/System/Graphics/Shaders/Simple.frag");
         _shader.Use();
 
@@ -79,12 +100,12 @@ public class Window : GameWindow
             GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 5 * sizeof(float), 3 * sizeof(float));
         }
 
-        _texture = Texture.LoadFromFile("Shared/Textures/container.png");
-        _texture.Use(TextureUnit.Texture0);
-
         _shader?.SetInt("texture0", 0);
-
+        
+        #endregion
+        
         _camera = new(Vector3.UnitZ * 3, Size.X / (float)Size.Y);
+
         CursorState = CursorState.Grabbed;
 
         _renderFrame();
@@ -127,19 +148,17 @@ public class Window : GameWindow
         base.OnUpdateFrame(args);
 
         if (!IsFocused) // Check to see if the window is focused
-        {
             return;
-        }
-
-        if (KeyboardState.IsKeyDown(Keys.Escape))
-        {
-            Close();
-        }
 
         const float cameraSpeed = 1.5f;
 
         if (_camera == null)
             return;
+
+        #region Set Key Bindings
+        
+        if (KeyboardState.IsKeyDown(Keys.Escape))
+            Close();
         
         if (KeyboardState.IsKeyDown(Keys.W))
         {
@@ -166,6 +185,8 @@ public class Window : GameWindow
         {
             _camera.Position -= _camera.Up * cameraSpeed * (float)args.Time; // Down
         }
+
+        #endregion
     }
 
     protected override void OnMouseWheel(MouseWheelEventArgs e)
@@ -183,25 +204,39 @@ public class Window : GameWindow
         if (_shader == null || _camera == null)
             return;
 
+        #region Update Previous Positions
+
         if (_previousProjection == _camera.GetProjectionMatrix()
             && _previousView == _camera.GetViewMatrix())
             return;
         
         _previousProjection = _camera.GetProjectionMatrix();
         _previousView = _camera.GetViewMatrix();
-            
-        GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
+        #endregion
+
+        #region Clear the Window and Set Vertex Buffer
+
+        GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
         GL.BindVertexArray(_vertexArrayObject);
 
+        #endregion
+
+        #region Pass Data to Shaders
+        
         Matrix4 model = Matrix4.Identity;
 
         _shader?.SetMatrix4("model", model);
         _shader?.SetMatrix4("view", _camera.GetViewMatrix());
         _shader?.SetMatrix4("projection", _camera.GetProjectionMatrix());
 
-        GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
+        #endregion
 
+        #region Draw the Current Buffers
+
+        GL.DrawElements(PrimitiveType.Triangles, _indices.Length, DrawElementsType.UnsignedInt, 0);
         SwapBuffers();
+
+        #endregion
     }
 }
