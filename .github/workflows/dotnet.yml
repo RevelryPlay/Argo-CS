@@ -24,13 +24,6 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build --no-restore
-      - name: Archive API Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: API Debug
-          path: |
-            Argo API/bin/Debug/**
-          retention-days: 30
       - name: Archive Base Content Artifacts
         uses: actions/upload-artifact@v3
         with:
