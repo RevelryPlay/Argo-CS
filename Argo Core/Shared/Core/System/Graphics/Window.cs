@@ -1,48 +1,18 @@
+using System.Drawing;
+using Argo_Core.Shared.Core.System.Graphics.Font_Rendering;
+using Argo_Utilities.Shared.Graphics;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
-
-using Argo_Utilities.Shared.Graphics;
+using ColorConverter = Argo_Utilities.Shared.Graphics.ColorConverter;
 
 namespace Argo_Core.Shared.Core.System.Graphics;
 
 public class Window : GameWindow
 {
 
-    #region Properties
-
-    readonly uint[] _indices =
-    {
-        0, 1, 3,
-        1, 2, 3
-    };
-
-    readonly float[] _vertices =
-    {
-        // Position       Texture coordinates
-        0.5f, 0.5f, 0.0f, 1.0f, 1.0f, // top right
-        0.5f, -0.5f, 0.0f, 1.0f, 0.0f, // bottom right
-        -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, // bottom left
-        -0.5f, 0.5f, 0.0f, 0.0f, 1.0f // top left
-    };
-
-    Camera? _camera;
-
-    int _elementBufferObject;
-
-    Shader? _shader;
-    Texture? _texture;
-
-    int _vertexArrayObject;
-    int _vertexBufferObject;
-
-    Matrix4 _previousProjection;
-    Matrix4 _previousView;
-
-    #endregion
-    
     public Window(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
         : base(gameWindowSettings, nativeWindowSettings)
     {
@@ -61,9 +31,9 @@ public class Window : GameWindow
         GL.ClearColor(color.Red, color.Green, color.Blue, color.Alpha);
 
         #endregion
-        
+
         #region Build Vertex Buffers
-        
+
         _vertexBufferObject = GL.GenBuffer();
         GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBufferObject);
         GL.BufferData(BufferTarget.ArrayBuffer, _vertices.Length * sizeof(float), _vertices, BufferUsageHint.StaticDraw);
@@ -74,7 +44,7 @@ public class Window : GameWindow
         _elementBufferObject = GL.GenBuffer();
         GL.BindBuffer(BufferTarget.ElementArrayBuffer, _elementBufferObject);
         GL.BufferData(BufferTarget.ElementArrayBuffer, _indices.Length * sizeof(uint), _indices, BufferUsageHint.StaticDraw);
-        
+
         #endregion
 
         #region Load Textures
@@ -83,9 +53,9 @@ public class Window : GameWindow
         _texture.Use(TextureUnit.Texture0);
 
         #endregion
-        
+
         #region Shader Setup
-        
+
         _shader = new("Shared/Core/System/Graphics/Shaders/Simple.vert", "Shared/Core/System/Graphics/Shaders/Simple.frag");
         _shader.Use();
 
@@ -101,12 +71,15 @@ public class Window : GameWindow
         }
 
         _shader?.SetInt("texture0", 0);
-        
+
         #endregion
-        
+
         _camera = new(Vector3.UnitZ * 3, Size.X / (float)Size.Y);
 
         CursorState = CursorState.Grabbed;
+
+        BitmapFont font = BitmapFontLoader.LoadFontFromFile("Shared/Fonts/Gabriola.fnt");
+        Size stringWidth = font.MeasureFont("This is a test string", -1);
 
         _renderFrame();
     }
@@ -156,10 +129,10 @@ public class Window : GameWindow
             return;
 
         #region Set Key Bindings
-        
+
         if (KeyboardState.IsKeyDown(Keys.Escape))
             Close();
-        
+
         if (KeyboardState.IsKeyDown(Keys.W))
         {
             _camera.Position += _camera.Front * cameraSpeed * (float)args.Time; // Forward
@@ -187,6 +160,7 @@ public class Window : GameWindow
         }
 
         #endregion
+
     }
 
     protected override void OnMouseWheel(MouseWheelEventArgs e)
@@ -195,7 +169,7 @@ public class Window : GameWindow
 
         if (_camera == null)
             return;
-        
+
         _camera.Fov -= e.OffsetY;
     }
 
@@ -209,7 +183,7 @@ public class Window : GameWindow
         if (_previousProjection == _camera.GetProjectionMatrix()
             && _previousView == _camera.GetViewMatrix())
             return;
-        
+
         _previousProjection = _camera.GetProjectionMatrix();
         _previousView = _camera.GetViewMatrix();
 
@@ -223,7 +197,7 @@ public class Window : GameWindow
         #endregion
 
         #region Pass Data to Shaders
-        
+
         Matrix4 model = Matrix4.Identity;
 
         _shader?.SetMatrix4("model", model);
@@ -238,5 +212,38 @@ public class Window : GameWindow
         SwapBuffers();
 
         #endregion
+
     }
+
+    #region Properties
+
+    readonly uint[] _indices =
+    {
+        0, 1, 3, 1, 2, 3
+    };
+
+    readonly float[] _vertices =
+    {
+        // Position       Texture coordinates
+        0.5f, 0.5f, 0.0f, 1.0f, 1.0f, // top right
+        0.5f, -0.5f, 0.0f, 1.0f, 0.0f, // bottom right
+        -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, // bottom left
+        -0.5f, 0.5f, 0.0f, 0.0f, 1.0f // top left
+    };
+
+    Camera? _camera;
+
+    int _elementBufferObject;
+
+    Shader? _shader;
+    Texture? _texture;
+
+    int _vertexArrayObject;
+    int _vertexBufferObject;
+
+    Matrix4 _previousProjection;
+    Matrix4 _previousView;
+
+    #endregion
+
 }

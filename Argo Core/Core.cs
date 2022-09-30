@@ -26,6 +26,7 @@ public class Core
 
     public Core()
     {
+
         #region Setup Window
 
         NativeWindowSettings nativeWindowSettings = new()
@@ -44,5 +45,6 @@ public class Core
         }
 
         #endregion
+
     }
 }
