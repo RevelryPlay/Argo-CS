@@ -1,4 +1,4 @@
-namespace Argo_Core.Shared.Core.System.Graphics.Font_Rendering;
+namespace Argo_Core.Shared.Core.System.Graphics.UIText;
 
 public class Padding
 {

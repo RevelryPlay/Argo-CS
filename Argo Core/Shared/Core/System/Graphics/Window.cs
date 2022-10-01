@@ -1,5 +1,6 @@
 using System.Drawing;
 using Argo_Core.Shared.Core.System.Graphics.Font_Rendering;
+using Argo_Core.Shared.Core.System.Graphics.UIText;
 using Argo_Utilities.Shared.Graphics;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
@@ -78,8 +79,8 @@ public class Window : GameWindow
 
         CursorState = CursorState.Grabbed;
 
-        BitmapFont font = BitmapFontLoader.LoadFontFromFile("Shared/Fonts/Gabriola.fnt");
-        Size stringWidth = font.MeasureFont("This is a test string", -1);
+        string ret = _textBuilder.AddText("This is a test line of text.", "Gabriola", 24.0f, Point.Empty);
+        Dictionary<string, TextProperties> addedStrings = _textBuilder.GetAddedText();
 
         _renderFrame();
     }
@@ -243,6 +244,8 @@ public class Window : GameWindow
 
     Matrix4 _previousProjection;
     Matrix4 _previousView;
+
+    readonly TextBuilder _textBuilder = new ();
 
     #endregion
 

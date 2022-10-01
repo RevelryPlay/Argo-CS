@@ -7,7 +7,7 @@ public struct NormalizedColor
     public readonly float Blue;
     public readonly float Alpha;
 
-    public NormalizedColor(float red, float green, float blue, float alpha)
+    public NormalizedColor(float red, float green, float blue, float alpha = 1.0f)
     {
         Red = red;
         Green = green;

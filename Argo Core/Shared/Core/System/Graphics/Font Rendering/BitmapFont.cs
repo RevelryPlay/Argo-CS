@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Drawing;
+using Argo_Core.Shared.Core.System.Graphics.UIText;
 
 namespace Argo_Core.Shared.Core.System.Graphics.Font_Rendering;
 
@@ -20,10 +21,6 @@ public class BitmapFont : IEnumerable<Character>
     }
 
     #endregion Private Methods
-
-    #region Public Constructors
-
-    #endregion Public Constructors
 
     #region Public Properties
 

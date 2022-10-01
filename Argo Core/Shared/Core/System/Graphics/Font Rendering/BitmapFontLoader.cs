@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Xml;
+using Argo_Core.Shared.Core.System.Graphics.UIText;
 
 namespace Argo_Core.Shared.Core.System.Graphics.Font_Rendering;
 
@@ -14,9 +15,9 @@ public class BitmapFontLoader
     /// </summary>
     /// <param name="fileName">Name of the file to load.</param>
     /// <returns></returns>
-    public static BitmapFont LoadFontFromFile(string fileName)
+    public static BitmapFont? LoadFontFromFile(string fileName)
     {
-        BitmapFont result;
+        BitmapFont? result;
 
         if (string.IsNullOrEmpty(fileName))
             throw new ArgumentNullException(nameof(fileName), "File name not specified");
@@ -47,7 +48,7 @@ public class BitmapFontLoader
     /// </summary>
     /// <param name="fileName">Name of the file to load.</param>
     /// <returns></returns>
-    public static BitmapFont LoadFontFromTextFile(string fileName)
+    public static BitmapFont? LoadFontFromTextFile(string fileName)
     {
 
         if (string.IsNullOrEmpty(fileName))
@@ -58,7 +59,7 @@ public class BitmapFontLoader
         IDictionary<int, Page> pageData = new SortedDictionary<int, Page>();
         IDictionary<Kerning, int> kerningDictionary = new Dictionary<Kerning, int>();
         IDictionary<char, Character> charDictionary = new Dictionary<char, Character>();
-        BitmapFont font = new();
+        BitmapFont? font = new();
 
         string? resourcePath = Path.GetDirectoryName(fileName);
         string[] lines = File.ReadAllLines(fileName);
@@ -84,7 +85,7 @@ public class BitmapFontLoader
                         font.SuperSampling = GetNamedInt(parts, "aa");
                         font.Padding = ParsePadding(GetNamedString(parts, "padding"));
                         font.Spacing = ParsePoint(GetNamedString(parts, "spacing"));
-                        // font.OutlineSize = GetNamedInt(parts, "outline");
+                        font.OutlineSize = GetNamedInt(parts, "outline");
                         break;
                     case "common":
                         font.LineHeight = GetNamedInt(parts, "lineHeight");
@@ -154,19 +155,19 @@ public class BitmapFontLoader
     /// </summary>
     /// <param name="fileName">Name of the file to load.</param>
     /// <returns></returns>
-    public static BitmapFont LoadFontFromXmlFile(string fileName)
+    public static BitmapFont? LoadFontFromXmlFile(string fileName)
     {
 
         if (string.IsNullOrEmpty(fileName))
             throw new ArgumentNullException(nameof(fileName), "File name not specified");
         if (!File.Exists(fileName))
-            throw new FileNotFoundException(string.Format("Cannot find file '{0}'", fileName), fileName);
+            throw new FileNotFoundException($"Cannot find file '{fileName}'", fileName);
 
         XmlDocument document = new();
         IDictionary<int, Page> pageData = new SortedDictionary<int, Page>();
         IDictionary<Kerning, int> kerningDictionary = new Dictionary<Kerning, int>();
         IDictionary<char, Character> charDictionary = new Dictionary<char, Character>();
-        BitmapFont font = new();
+        BitmapFont? font = new();
 
         string? resourcePath = Path.GetDirectoryName(fileName);
         document.Load(fileName);
@@ -281,7 +282,7 @@ public class BitmapFontLoader
     /// <param name="parts">The array of parts.</param>
     /// <param name="name">The name of the value to return.</param>
     /// <returns></returns>
-    static bool GetNamedBool(string[] parts, string name)
+    static bool GetNamedBool(IEnumerable<string> parts, string name)
     {
         return GetNamedInt(parts, name) != 0;
     }
