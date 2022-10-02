@@ -1,7 +1,7 @@
 using System.Drawing;
 using Argo_Utilities.Shared.Graphics;
 
-namespace Argo_Core.Shared.Core.System.Graphics.UIText;
+namespace Argo_Core.Shared.System.Graphics.UIText;
 
 public class TextProperties
 {

@@ -16,14 +16,14 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Argo Base Content\Argo Base Content.csproj"/>
-        <ProjectReference Include="..\Argo Utilities\Argo Utilities.csproj"/>
+        <ProjectReference Include="..\Argo Base Content\Argo Base Content.csproj" />
+        <ProjectReference Include="..\Argo Utilities\Argo Utilities.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="OpenTK" Version="4.7.5"/>
-        <PackageReference Include="OpenTK.Graphics" Version="4.7.5"/>
-        <PackageReference Include="StbImageSharp" Version="2.27.12"/>
+        <PackageReference Include="OpenTK" Version="4.7.5" />
+        <PackageReference Include="OpenTK.Graphics" Version="4.7.5" />
+        <PackageReference Include="StbImageSharp" Version="2.27.12" />
     </ItemGroup>
 
 </Project>

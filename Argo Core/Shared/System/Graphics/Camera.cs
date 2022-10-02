@@ -1,6 +1,6 @@
 using OpenTK.Mathematics;
 
-namespace Argo_Core.Shared.Core.System.Graphics;
+namespace Argo_Core.Shared.System.Graphics;
 
 public class Camera
 {

@@ -1,7 +1,7 @@
 using OpenTK.Graphics.OpenGL4;
 using StbImageSharp;
 
-namespace Argo_Core.Shared.Core.System.Graphics;
+namespace Argo_Core.Shared.System.Graphics;
 
 public class Texture
 {

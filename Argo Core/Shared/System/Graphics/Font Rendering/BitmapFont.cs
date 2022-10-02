@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Drawing;
-using Argo_Core.Shared.Core.System.Graphics.UIText;
+using Argo_Core.Shared.System.Graphics.UIText;
 
-namespace Argo_Core.Shared.Core.System.Graphics.Font_Rendering;
+namespace Argo_Core.Shared.System.Graphics.Font_Rendering;
 
 public class BitmapFont : IEnumerable<Character>
 {

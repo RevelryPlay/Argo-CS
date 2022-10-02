@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace Argo_Core.Shared.Core.System.Graphics.UIText;
+namespace Argo_Core.Shared.System.Graphics.UIText;
 
 public class Character
 {

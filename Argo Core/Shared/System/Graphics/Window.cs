@@ -1,5 +1,5 @@
 using System.Drawing;
-using Argo_Core.Shared.Core.System.Graphics.UIText;
+using Argo_Core.Shared.System.Graphics.UIText;
 using Argo_Utilities.Shared.Graphics;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
@@ -8,7 +8,7 @@ using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 using ColorConverter = Argo_Utilities.Shared.Graphics.ColorConverter;
 
-namespace Argo_Core.Shared.Core.System.Graphics;
+namespace Argo_Core.Shared.System.Graphics;
 
 public class Window : GameWindow
 {

@@ -1,4 +1,4 @@
-using Argo_Core.Shared.Core.System.Graphics;
+using Argo_Core.Shared.System.Graphics;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
