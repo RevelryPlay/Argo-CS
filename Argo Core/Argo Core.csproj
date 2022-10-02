@@ -10,7 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Update="Shared\Core\System\Graphics\Shaders\*.*">
+        <None Update="Shared\System\Graphics\Shaders\*.*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>

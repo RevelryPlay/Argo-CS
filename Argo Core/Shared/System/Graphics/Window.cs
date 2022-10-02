@@ -56,7 +56,7 @@ public class Window : GameWindow
 
         #region Shader Setup
 
-        _shader = new("Shared/Core/System/Graphics/Shaders/Simple.vert", "Shared/Core/System/Graphics/Shaders/Simple.frag");
+        _shader = new("Shared/System/Graphics/Shaders/Simple.vert", "Shared/System/Graphics/Shaders/Simple.frag");
         _shader.Use();
 
         if (_shader != null)
