@@ -5,12 +5,8 @@ namespace Argo_Core.Shared.Core.System.Graphics.UIText;
 
 public class TextBuilder
 {
-    readonly Dictionary<string, BitmapFont> _loadedFonts = new ();
     readonly Dictionary<string, TextProperties> _addedStrings = new();
-
-    public TextBuilder()
-    {
-    }
+    readonly Dictionary<string, BitmapFont> _loadedFonts = new();
 
     public string AddText(string text, string fontName, float fontSize, Point position, double maxWidth = -1)
     {
@@ -44,7 +40,7 @@ public class TextBuilder
         return _addedStrings;
     }
 
-    private void LoadFontFiles(string fontName)
+    void LoadFontFiles(string fontName)
     {
         if (_loadedFonts.ContainsKey(fontName))
             return;

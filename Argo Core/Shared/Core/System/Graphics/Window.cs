@@ -1,5 +1,4 @@
 using System.Drawing;
-using Argo_Core.Shared.Core.System.Graphics.Font_Rendering;
 using Argo_Core.Shared.Core.System.Graphics.UIText;
 using Argo_Utilities.Shared.Graphics;
 using OpenTK.Graphics.OpenGL4;
@@ -245,7 +244,7 @@ public class Window : GameWindow
     Matrix4 _previousProjection;
     Matrix4 _previousView;
 
-    readonly TextBuilder _textBuilder = new ();
+    readonly TextBuilder _textBuilder = new();
 
     #endregion
 

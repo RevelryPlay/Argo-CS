@@ -4,6 +4,7 @@ namespace Argo_Core.Shared.Core.System.Graphics.UIText;
 
 public class Character
 {
+
     #region Public Properties
 
     public int Channel { get; set; }
@@ -17,7 +18,7 @@ public class Character
 
     #region Public Methods
 
-    public Character() {}
+    public Character() { }
 
     Character(int channel, Rectangle bounds, Point offset, char c, int texturePage, int xAdvance)
     {
@@ -35,4 +36,5 @@ public class Character
     }
 
     #endregion Public Methods
+
 }

@@ -81,7 +81,7 @@ public class BitmapFont : IEnumerable<Character>
 
     public IEnumerator<Character> GetEnumerator()
     {
-        foreach (var pair in Characters)
+        foreach (KeyValuePair<char, Character> pair in Characters)
         {
             yield return pair.Value;
         }
@@ -106,7 +106,7 @@ public class BitmapFont : IEnumerable<Character>
         int currentLineHeight = LineHeight;
         int blockWidth = 0;
         int blockHeight = 0;
-        var lineHeights = new List<int>();
+        List<int> lineHeights = new List<int>();
 
         foreach (char character in normalizedText)
         {

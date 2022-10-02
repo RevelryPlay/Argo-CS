@@ -391,7 +391,7 @@ public class BitmapFontLoader
         {
 
             int partStart = -1;
-            var parts = new List<string>();
+            List<string> parts = new List<string>();
 
             do
             {
@@ -435,7 +435,7 @@ public class BitmapFontLoader
     static T[] ToArray<T>(ICollection<T> values)
     {
 
-        var result =
+        T[] result =
             // avoid a forced .NET 3 dependency just for one call to Linq
             new T[values.Count];
         values.CopyTo(result, 0);
