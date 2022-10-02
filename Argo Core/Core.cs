@@ -1,4 +1,5 @@
 using Argo_Core.Shared.Core.System.Graphics;
+using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 
@@ -20,31 +21,24 @@ public class Core
     // Input Utilities
     // Networking Utilities
 
-    // Get Registered Extensions 
+    // Get Registered Extensions
     // Handle Preloads
     // Core Event Loop
 
-    public Core()
+    public void CreateWindow(Vector2i size, string title)
     {
-
-        #region Setup Window
-
         NativeWindowSettings nativeWindowSettings = new()
         {
-            Size = new(1200, 1080),
-            Title = "Main Window",
+            Size = size,
+            Title = title,
             // This is needed to run on macos
             Flags = ContextFlags.ForwardCompatible
         };
-
 
         // This line creates a new instance, and wraps the instance in a using statement so it's automatically disposed once we've exited the block.
         using (Window window = new(GameWindowSettings.Default, nativeWindowSettings))
         {
             window.Run();
         }
-
-        #endregion
-
     }
 }
