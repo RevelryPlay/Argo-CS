@@ -391,7 +391,7 @@ public class BitmapFontLoader
         {
 
             int partStart = -1;
-            List<string> parts = new List<string>();
+            List<string> parts = new();
 
             do
             {

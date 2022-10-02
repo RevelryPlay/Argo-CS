@@ -12,5 +12,4 @@ public class TextProperties
     public Point Position;
     public Size Size;
     public string? Text;
-
 }

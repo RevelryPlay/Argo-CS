@@ -1,2 +1,2 @@
 ﻿using Argo_Core;
-Core core = new();
+Argo argo = new();

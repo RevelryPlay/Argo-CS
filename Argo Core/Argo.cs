@@ -5,7 +5,7 @@ using OpenTK.Windowing.Desktop;
 
 namespace Argo_Core;
 
-public class Core
+public class Argo
 {
     // Get System Modules
     // Base Error Handlers

@@ -26,8 +26,4 @@
         <PackageReference Include="StbImageSharp" Version="2.27.12"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="Loggers"/>
-    </ItemGroup>
-
 </Project>

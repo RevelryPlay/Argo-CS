@@ -106,7 +106,7 @@ public class BitmapFont : IEnumerable<Character>
         int currentLineHeight = LineHeight;
         int blockWidth = 0;
         int blockHeight = 0;
-        List<int> lineHeights = new List<int>();
+        List<int> lineHeights = new();
 
         foreach (char character in normalizedText)
         {
