@@ -1,19 +1,17 @@
-using System.Drawing;
-using Argo_Core.Shared.System.Graphics.UIText;
-using Argo_Utilities.Shared.Graphics;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
+
+using Argo_Utilities.Shared.Graphics;
 using ColorConverter = Argo_Utilities.Shared.Graphics.ColorConverter;
 
 namespace Argo_Core.Shared.System.Graphics;
 
-public class Window : GameWindow
+public class BaseWindow : GameWindow
 {
-
-    public Window(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
+    public BaseWindow(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
         : base(gameWindowSettings, nativeWindowSettings)
     {
     }
@@ -76,11 +74,6 @@ public class Window : GameWindow
 
         _camera = new(Vector3.UnitZ * 3, Size.X / (float)Size.Y);
 
-        CursorState = CursorState.Grabbed;
-
-        string ret = _textBuilder.AddText("This is a test line of text.", "Gabriola", 24.0f, Point.Empty);
-        Dictionary<string, TextProperties> addedStrings = _textBuilder.GetAddedText();
-
         _renderFrame();
     }
 
@@ -110,7 +103,7 @@ public class Window : GameWindow
 
     protected override void OnResize(ResizeEventArgs e)
     {
-        GL.Viewport(0, 0, Size.X, Size.Y);
+        GL.Viewport(0, 0, e.Width, e.Height);
         _renderFrame();
 
         base.OnResize(e);
@@ -219,7 +212,8 @@ public class Window : GameWindow
 
     readonly uint[] _indices =
     {
-        0, 1, 3, 1, 2, 3
+        0, 1, 3,
+        1, 2, 3
     };
 
     readonly float[] _vertices =
@@ -243,8 +237,6 @@ public class Window : GameWindow
 
     Matrix4 _previousProjection;
     Matrix4 _previousView;
-
-    readonly TextBuilder _textBuilder = new();
 
     #endregion
 

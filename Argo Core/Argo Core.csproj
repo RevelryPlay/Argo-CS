@@ -26,4 +26,14 @@
         <PackageReference Include="StbImageSharp" Version="2.27.12" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Shared\System\Graphics\Font Rendering" />
+      <Folder Include="Shared\System\Graphics\UIText" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Shared\System\Graphics\Font Rendering\BitmapFontLoader.cs" />
+      <Compile Remove="Shared\System\Graphics\UIText\Character.cs" />
+    </ItemGroup>
+
 </Project>
