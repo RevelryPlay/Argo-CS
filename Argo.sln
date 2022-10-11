@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Argo Core", "Argo Core\Argo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Argo Tests", "Argo Tests\Argo Tests.csproj", "{B44D2382-29F7-4AE8-9BBA-342B0AF55DF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground", "Playground\Playground.csproj", "{1D59E841-D5C1-4F6F-BBEB-A89FF5525086}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo Playground", "Demo Playground\Demo Playground.csproj", "{1D59E841-D5C1-4F6F-BBEB-A89FF5525086}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Argo Base Content", "Argo Base Content\Argo Base Content.csproj", "{45242425-AEDA-4DA6-9AEE-D8A4878BD59F}"
 EndProject
